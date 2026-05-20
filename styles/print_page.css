@@ -1,0 +1,477 @@
+
+ 
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+
+        }
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 30px;
+            background: #fff;
+            color: #000;
+            line-height: 1.3;
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: top;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            /* border-bottom: 2px solid #333; */
+        }
+
+        .header img {
+            height: 50px;
+            width: auto;
+        }
+
+        .header .company-info {
+            text-align: right;
+            font-size: 11px;
+            color: #333;
+            /* line-height: 1.4; */
+        }
+
+        h2 {
+            text-align: center;
+            margin: 15px 0;
+            letter-spacing: 2px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a; 
+            text-transform: uppercase;
+            /* border-bottom: 1px solid #999; */
+            padding-bottom: 8px;
+        }
+
+        .client-cont {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            /* background: #f9f9f9; */
+            padding: 10px 10px;
+            /* border: 1px solid #ccc; */
+            font-size: 13px;
+        }
+
+        .client-cont div:first-child {
+            font-weight: 600;
+        }
+
+        .client-cont div:last-child {
+            color: #c00;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .border-box {
+            border: 1px solid #333;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #fff;
+        }
+
+        .ism-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .ism-info:last-child {
+            margin-bottom: 0;
+        }
+
+        .ism-info div {
+            width: 48%;
+            font-size: 12px;
+        }
+
+        .isJb {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ism-info div b {
+            color: #000;
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 11px;
+            table-layout: fixed;
+            /* Added for precise column control */
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+
+        th {
+            background-color: #e6e6e6;
+            font-weight: 700;
+            padding: 6px 4px;
+            text-align: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+        }
+
+        td {
+            padding: 5px 4px;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+            /* Prevents content overflow */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .totals-row {
+            background-color: #e6e6e6 !important;
+            font-weight: 700;
+            border-top: 2px solid #000;
+        }
+
+        .totals-row td {
+            padding: 6px 4px;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .signatures div {
+            text-align: center;
+            width: 30%;
+            font-size: 11px;
+        }
+
+        .signatures div:first-child {
+            text-align: left;
+        }
+
+        .signatures div:last-child {
+            text-align: right;
+        }
+
+        .signatures div:nth-child(2) {
+            text-align: center;
+        }
+
+        .signature-line {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: #333;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .print-btn-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .print-btn {
+            background: #1a4a1a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #1a4a1a;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+        }
+
+        .print-btn:hover {
+            background: #1a4a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .print-btn:active {
+            transform: translateY(0);
+        }
+
+        @media print {
+            body {
+                margin: 0.3in;
+                background: white;
+                font-size: 9pt;
+            }
+
+            .print-btn-container {
+                display: none;
+            }
+
+            .header {
+                /* border-bottom: 1.5px solid black; */
+                margin-bottom: 10px;
+                padding-bottom: 5px;
+            }
+
+            .header img {
+                height: 40px;
+            }
+
+            .header .company-info {
+                font-size: 8pt;
+            }
+
+            h2 {
+                margin: 8px 0;
+                font-size: 16pt;
+                letter-spacing: 1px;
+                /* border-bottom: 1px solid #999; */
+                padding-bottom: 4px;
+            }
+
+            .client-cont {
+                margin-bottom: 10px;
+                padding: 6px 5px;
+                font-size: 10pt;
+                background: #f9f9f9 !important;
+                /* border: 1px solid black; */
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .client-cont div:last-child {
+                font-size: 11pt;
+            }
+
+            .border-box {
+                border: 1.5px solid black;
+                padding: 8px;
+                margin-bottom: 10px;
+            }
+
+            .ism-info {
+                margin-bottom: 4px;
+            }
+
+            .ism-info div {
+                font-size: 9pt;
+            }
+
+            .ism-info div b {
+                min-width: 80px;
+            }
+
+            table {
+                margin: 8px 0;
+                font-size: 8pt;
+                table-layout: fixed;
+            }
+
+            th {
+                padding: 3px 2px;
+                background-color: #e6e6e6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            td {
+                padding: 2px 2px;
+                font-size: 7.5pt;
+            }
+
+            table,
+            th,
+            td {
+                border: 1px solid black !important;
+            }
+
+            .totals-row {
+                background-color: #e6e6e6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .totals-row td {
+                padding: 3px 2px;
+                font-size: 8pt;
+            }
+
+            .signatures {
+                margin-top: 10px;
+            }
+
+            .signatures div {
+                font-size: 8pt;
+            }
+
+            .signature-line {
+                font-size: 10pt;
+                letter-spacing: 0.5px;
+                margin-bottom: 2px;
+            }
+
+            div[style*="text-align: center"] {
+                margin-top: 10px;
+                font-size: 7pt !important;
+            }
+
+             .page-break {
+        page-break-after: always;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr {
+        page-break-inside: avoid;
+    }
+        }
+
+        .client-cont b {
+            margin-right: 3px;
+        }
+
+        .ism-info b {
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        th:nth-child(1) {
+            width: 3%;
+        }
+
+        th:nth-child(2) {
+            width: 10%;
+        }
+
+        th:nth-child(3) {
+            width: 12%;
+        }
+
+        th:nth-child(4) {
+            width: 14%;
+        }
+
+        th:nth-child(5) {
+            width: 15%;
+        }
+
+        th:nth-child(6) {
+            width: 5%;
+        }
+
+        th:nth-child(7) {
+            width: 5%;
+        }
+
+        th:nth-child(8) {
+            width: 10%;
+        }
+
+        th:nth-child(9) {
+            width: 23%;
+        }
+
+        @media print {
+            th {
+                font-size: 8px;
+                text-align: center;
+            }
+
+            th:nth-child(1) {
+                width: 3%;
+            }
+
+            th:nth-child(2) {
+                width: 10%;
+            }
+
+            th:nth-child(3) {
+                width: 12%;
+            }
+
+            th:nth-child(4) {
+                width: 12%;
+            }
+
+            th:nth-child(5) {
+                width: 12%;
+            }
+
+            th:nth-child(6) {
+                width: 10%;
+            }
+
+            th:nth-child(7) {
+                width: 7%;
+            }
+
+            th:nth-child(8) {
+                width: 10%;
+            }
+
+            th:nth-child(9) {
+                width: 12%;
+            }
+        }
+
+        th:nth-child(2) input[type="checkbox"] {
+            margin-right: 3px;
+            transform: scale(0.8);
+            vertical-align: middle;
+        }
+
+        th:nth-child(2) br {
+            display: none;
+        }
+
+        th:nth-child(2) {
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        th:nth-child(2) input[type="checkbox"]:first-of-type {
+            margin-left: 0;
+        }
+
+        /* table {
+            page-break-inside: avoid;
+        } */
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        .signature-line {
+            margin-bottom: 2px;
+        }
