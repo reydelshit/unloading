@@ -22,8 +22,6 @@ $flagging = $_POST['flagging'] ?? null;
 $season = $_POST['season'] ?? null;
 
 
-// ================= GET UNLOADING =================
-
 $stmt = $connLocal->prepare("
     SELECT *
     FROM unloading
@@ -45,7 +43,25 @@ $unloading = $result->fetch_assoc();
 
 $ism_id = uniqid("ISM");
 
-$ism_no = "SSC-" . date("y") . "-" . rand(10000, 99999);
+$warehouseRanges = [
+    1 => ['min' => 0,        'max' => 24999999],
+    2 => ['min' => 25000000, 'max' => 49999999],
+    3 => ['min' => 50000000, 'max' => 74999999],
+    4 => ['min' => 75000000, 'max' => 99999999],
+];
+
+
+// change this based on warehouse
+$warehouse_id = 2;
+
+$range = $warehouseRanges[$warehouse_id];
+
+// generate random number within range
+$randomNumber = rand($range['min'], $range['max']);
+
+// format ISM number
+$ism_no = "SSC-" . date("y") . "-" . str_pad($randomNumber, 8, '0', STR_PAD_LEFT);
+
 
 
 $stmtInsert = $connLocal->prepare("
@@ -101,56 +117,6 @@ $stmtItems = $connLocal->prepare("
 
 $stmtItems->bind_param("i", $unloading_id);
 $stmtItems->execute();
-
-$itemsResult = $stmtItems->get_result();
-
-$order = 1;
-
-while ($item = $itemsResult->fetch_assoc()) {
-
-    $batchLot = trim(
-        $unloading['batch_number'] . " / " . $unloading['lot_number']
-    );
-
-    $stmtInsertItem = $connLocal->prepare("
-        INSERT INTO ism_items
-        (
-            ism_id,
-            jb_pallet,
-            variety_hybrid,
-            material_group,
-            batch_lot_number,
-            bags_sacks_no,
-            weight,
-            total_weight,
-            remarks,
-            itemorder
-        )
-        VALUES
-        (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-        )
-    ");
-
-    $stmtInsertItem->bind_param(
-        "sssssiddsi",
-        $ism_id,
-        $item['jb_pallet'],
-        $unloading['variety_hybrid'],
-        $unloading['material_group'],
-        $batchLot,
-        $item['bags_sacks_no'],
-        $item['weight'],
-        $item['total_weight'],
-        $item['remarks'],
-        $order
-    );
-
-    $stmtInsertItem->execute();
-
-    $order++;
-}
-
 
 header("Location: print_ism.php?id=" . urlencode($ism_id));
 exit;

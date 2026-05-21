@@ -38,7 +38,7 @@ while ($row = $itemsResult->fetch_assoc()) {
 }
 
 $rowCount = count($items);
-$totalRows = 10;
+$totalRows = 20;
 $isJB = $header['isJB'] ?? 0;
 ?>
 
@@ -56,13 +56,13 @@ $isJB = $header['isJB'] ?? 0;
             font-family: 'Poppins', 'Arial', sans-serif;
         }
 
-        /* 4 inches width = 101.6mm, using 4in for exact */
+        /* A6 size: 4" x 5.83" */
         body {
             background: #fff;
             padding: 0;
             margin: 0;
             width: 4in;
-            min-height: 5.83in;
+            height: 5.83in;
             display: flex;
             justify-content: center;
             margin: 0 auto;
@@ -70,8 +70,10 @@ $isJB = $header['isJB'] ?? 0;
 
         .form-container {
             width: 100%;
+            height: 100%;
             background: white;
-            padding: 0.1in;
+            padding: 0.08in;
+            overflow: hidden;
         }
 
         .header {
@@ -79,107 +81,108 @@ $isJB = $header['isJB'] ?? 0;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 5px;
-            /* padding-bottom: 4px; */
-
+            margin-bottom: 3px;
         }
 
         .header img {
-            height: 22px;
+            height: 16px;
             width: auto;
         }
 
         .company-info {
             text-align: center;
-            font-size: 6px;
-            line-height: 1.2;
+            font-size: 5px;
+            line-height: 1.1;
             font-weight: 500;
         }
 
         h2 {
             text-align: center;
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 700;
-            margin: 5px 0;
+            margin: 3px 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .unloading-no {
             text-align: right;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-weight: 600;
-            font-size: 8px;
+            font-size: 6.5px;
         }
 
         .unloading-no span {
             color: #c00;
-            font-size: 9px;
+            font-size: 7px;
         }
 
         .form-fields {
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .field-row {
             display: flex;
             align-items: baseline;
-            margin-bottom: 5px;
-            font-size: 8px;
+            margin-bottom: 3px;
+            font-size: 6px;
         }
 
         .field-label {
-            width: 30%;
+            width: 15%;
             font-weight: 600;
-            font-size: 7.5px;
+            font-size: 5.5px;
         }
 
         .field-value {
             flex: 1;
-            border-bottom: 0.5px solid #000;
-            padding-left: 5px;
-            font-size: 7.5px;
+            border-bottom: 0.3px solid #000;
+            padding-left: 4px;
+            font-size: 1em;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-align: center;
+            font-weight: bold;
+            /* margin-left: 8rem; */
         }
 
         /* Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 6px 0;
-            font-size: 6px;
+            margin: 3px 0;
+            font-size: 5px;
         }
 
         table,
         th,
         td {
-            border: 0.5px solid #000;
+            border: 0.3px solid #000;
         }
 
         th {
             background-color: #e6e6e6;
             font-weight: 700;
-            padding: 3px 2px;
+            padding: 2px 1px;
             text-align: center;
-            font-size: 6px;
+            font-size: 5px;
             text-transform: uppercase;
         }
 
         td {
-            padding: 3px 2px;
+            padding: 2px 1px;
             text-align: center;
             vertical-align: middle;
-            font-size: 6px;
+            font-size: 5px;
         }
 
         th:nth-child(1) {
-            width: 12%;
+            width: 10%;
         }
 
         th:nth-child(2) {
-            width: 30%;
+            width: 28%;
         }
 
         th:nth-child(3) {
@@ -191,13 +194,13 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         th:nth-child(5) {
-            width: 22%;
+            width: 26%;
         }
 
         .checkbox-group {
             display: flex;
             flex-direction: row;
-            gap: 8px;
+            gap: 5px;
             align-items: center;
             justify-content: center;
         }
@@ -205,15 +208,15 @@ $isJB = $header['isJB'] ?? 0;
         .checkbox-group div {
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
             white-space: nowrap;
-            font-size: 5px;
+            font-size: 4px;
         }
 
         .checkbox-group input {
             margin: 0;
-            width: 7px;
-            height: 7px;
+            width: 5px;
+            height: 5px;
         }
 
         .totals-row {
@@ -222,32 +225,32 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         .totals-row td {
-            padding: 3px 2px;
-            font-size: 7px;
+            padding: 2px 1px;
+            font-size: 5.5px;
         }
 
         .remarks-section {
-            margin: 6px 0;
-            padding: 2px 0;
+            margin: 3px 0;
+            padding: 1px 0;
         }
 
         .remarks-label {
             font-weight: 600;
-            margin-bottom: 3px;
-            font-size: 7px;
+            margin-bottom: 2px;
+            font-size: 5.5px;
         }
 
         .remarks-line {
-            border-bottom: 0.5px solid #000;
-            padding: 4px 0;
-            min-height: 18px;
-            font-size: 7px;
+            border-bottom: 0.3px solid #000;
+            padding: 2px 0;
+            min-height: 12px;
+            font-size: 5px;
         }
 
         .signatures {
             display: flex;
             justify-content: space-between;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
         .signature-item {
@@ -263,36 +266,36 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         .signature-line {
-            border-top: 0.5px solid #000;
-            margin: 8px 0 3px 0;
+            border-top: 0.3px solid #000;
+            margin: 5px 0 2px 0;
             width: 100%;
         }
 
         .signature-name {
             font-weight: 600;
-            font-size: 6px;
+            font-size: 5px;
             text-transform: uppercase;
             margin-bottom: 1px;
         }
 
         .signature-title {
-            font-size: 5px;
+            font-size: 4px;
             color: #555;
         }
 
         /* Print button */
         .print-btn-container {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 4px;
         }
 
         .print-btn {
             background: #1a4a1a;
             color: white;
             border: none;
-            padding: 4px 12px;
-            border-radius: 3px;
-            font-size: 8px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 6px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -301,16 +304,16 @@ $isJB = $header['isJB'] ?? 0;
             background: #0f3a0f;
         }
 
-        /* Print optimization - 4 inches width */
         @media print {
             body {
                 width: 4in;
+                height: 5.83in;
                 padding: 0;
                 margin: 0;
             }
 
             .form-container {
-                padding: 0.1in;
+                padding: 0.08in;
             }
 
             .print-btn-container {
@@ -332,7 +335,7 @@ $isJB = $header['isJB'] ?? 0;
             table,
             th,
             td {
-                border: 0.5px solid black !important;
+                border: 0.3px solid black !important;
             }
 
             @page {
@@ -364,34 +367,34 @@ $isJB = $header['isJB'] ?? 0;
         <div class="form-fields">
             <div class="field-row">
                 <div class="field-label">DATE:</div>
-                <div class="field-value"><?php echo date('F j, Y', strtotime($header['created_at'])); ?></div>
+                <div class="field-value"><?php echo date('m/d/Y', strtotime($header['created_at'])); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">CLIENT:</div>
-                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['client'] ?? '')); ?></div>
+                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['client'] ?? ''), 0, 20)); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">VARIETY/HYBRID:</div>
-                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['variety_hybrid'] ?? '')); ?></div>
+                <div class="field-label">VARIETY:</div>
+                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['variety_hybrid'] ?? ''), 0, 15)); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">MATERIAL GROUP:</div>
-                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['material_group'] ?? '')); ?></div>
+                <div class="field-label">MATERIAL GRP:</div>
+                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['material_group'] ?? ''), 0, 12)); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">LOT NUMBER:</div>
-                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['lot_number'] ?? '')); ?></div>
+                <div class="field-label">LOT NO:</div>
+                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['lot_number'] ?? ''), 0, 12)); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">BATCH NUMBER:</div>
-                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['batch_number'] ?? '')); ?></div>
+                <div class="field-label">BATCH NO:</div>
+                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['batch_number'] ?? ''), 0, 12)); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">TIME START:</div>
                 <div class="field-value"><?php echo htmlspecialchars($header['time_start'] ?? ''); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">TIME FINISHED:</div>
+                <div class="field-label">TIME FINISH:</div>
                 <div class="field-value"><?php echo htmlspecialchars($header['time_finished'] ?? ''); ?></div>
             </div>
         </div>
@@ -404,27 +407,27 @@ $isJB = $header['isJB'] ?? 0;
                     <th>
                         <div class="checkbox-group">
                             <?php if ($isJB == 1): ?>
-                                <div><input type="checkbox" disabled> PALLET</div>
-                                <div><input type="checkbox" checked disabled> JB</div>
+                                <div><input type="checkbox" disabled> PALLET No.</div>
+                                <div><input type="checkbox" checked disabled> JB No.</div>
                             <?php else: ?>
-                                <div><input type="checkbox" checked disabled> PALLET</div>
-                                <div><input type="checkbox" disabled> JB</div>
+                                <div><input type="checkbox" checked disabled> PALLET No.</div>
+                                <div><input type="checkbox" disabled> JB No.</div>
                             <?php endif; ?>
                         </div>
                     </th>
                     <th>BAGS</th>
-                    <th>KG/BAG</th>
-                    <th>TOTAL KG</th>
+                    <th>KG/B</th>
+                    <th>TOTAL</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 foreach ($items as $index => $item):
-                    $containerType = ($isJB == 1) ? 'JB' : 'PAL';
+
                 ?>
                     <tr>
                         <td><?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?></td>
-                        <td style="font-weight: 500;"><?php echo $containerType; ?> <?php echo htmlspecialchars(substr($item['jb_pallet'] ?? '', 0, 8)); ?></td>
+                        <td style="font-weight: 500;"><?php echo htmlspecialchars(substr($item['jb_pallet'] ?? '', 0, 6)); ?></td>
                         <td><?php echo number_format($item['bags_sacks_no']); ?></td>
                         <td><?php echo number_format($item['weight'], 0); ?></td>
                         <td><?php echo number_format($item['total_weight'], 0); ?></td>
@@ -452,19 +455,19 @@ $isJB = $header['isJB'] ?? 0;
 
         <div class="remarks-section">
             <div class="remarks-label">REMARKS:</div>
-            <div class="remarks-line"><?php echo htmlspecialchars($header['remarks'] ?? ''); ?></div>
+            <div class="remarks-line"><?php echo htmlspecialchars(substr($header['remarks'] ?? '', 0, 35)); ?></div>
         </div>
 
         <!-- Signatures -->
         <div class="signatures">
             <div class="signature-item">
                 <div class="signature-line"></div>
-                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['prepared_by'] ?? ''), 0, 15)); ?></div>
+                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['prepared_by'] ?? ''), 0, 12)); ?></div>
                 <div class="signature-title">PREPARED BY</div>
             </div>
             <div class="signature-item">
                 <div class="signature-line"></div>
-                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['checked_by'] ?? ''), 0, 15)); ?></div>
+                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['checked_by'] ?? ''), 0, 12)); ?></div>
                 <div class="signature-title">CHECKED BY</div>
             </div>
         </div>

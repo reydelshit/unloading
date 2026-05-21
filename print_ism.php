@@ -22,7 +22,39 @@ if (empty($ism_id)) {
     die("No ISM selected");
 }
 
-$stmt = $connLocal->prepare("SELECT * FROM ism_header WHERE ism_id = ? ");
+$stmt = $connLocal->prepare("SELECT 
+    u.unloading_id,
+    u.client AS client_name,
+    u.variety_hybrid,
+    u.material_group,
+    u.lot_number,
+    u.batch_number,
+    u.time_start,
+    u.time_finished,
+    u.created_at,
+    u.prepared_by,
+    u.checked_by,
+    u.remarks,
+
+    ih.origin_site,
+    ih.transfer_site,
+    ih.bin_no,
+    ih.prepared_by,
+    ih.verified_by,
+    ih.flagging,
+    ih.isJB,
+    ih.season,
+    ih.ism_no,
+    ih.date
+
+FROM unloading u
+LEFT JOIN ism_header ih 
+    ON ih.unloading_id = u.unloading_id
+
+WHERE ih.ism_id = ? ");
+
+
+
 $stmt->bind_param("s", $ism_id);
 $stmt->execute();
 $headerResult = $stmt->get_result();
@@ -33,8 +65,8 @@ if ($headerResult->num_rows == 0) {
 
 $header = $headerResult->fetch_assoc();
 
-$stmtItems = $connLocal->prepare("SELECT * FROM ism_items WHERE ism_id = ? ORDER BY itemorder");
-$stmtItems->bind_param("s", $ism_id);
+$stmtItems = $connLocal->prepare("SELECT unloading_items.*, unloading.* FROM unloading_items JOIN unloading ON unloading_items.unloading_id = unloading.unloading_id WHERE unloading_items.unloading_id = ? ORDER BY itemorder");
+$stmtItems->bind_param("s", $header['unloading_id']);
 $stmtItems->execute();
 $itemsResult = $stmtItems->get_result();
 
@@ -177,7 +209,7 @@ $ismNoFormatted = preg_replace('/^SSC-(\d{2})-/', "SSC-{$seasonCode}\\1-", $ismN
                     <td><strong><?php echo htmlspecialchars($item['jb_pallet']); ?></strong></td>
                     <td><?php echo htmlspecialchars($item['variety_hybrid']); ?></td>
                     <td><?php echo htmlspecialchars($item['material_group']); ?></td>
-                    <td><?php echo htmlspecialchars($item['batch_lot_number']); ?></td>
+                    <td><?php echo htmlspecialchars($item['batch_number']); ?></td>
                     <td><?php echo number_format($item['bags_sacks_no']); ?></td>
                     <td><?php echo number_format($item['weight'], 2); ?></td>
                     <td><?php echo number_format($item['total_weight'], 2); ?></td>

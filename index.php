@@ -5,248 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Unloading Monitoring System | Minimalist White & Yellow</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #ffffff;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            line-height: 1.5;
-            color: #1e1e2a;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 1.5rem;
-        }
-
-        /* main card container — crisp white with subtle border and soft shadow */
-        .dashboard {
-            max-width: 880px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
-            border: 1px solid #f0f0ee;
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-
-        /* header area — fresh yellow accent */
-        .hero {
-            background: #ffffff;
-            padding: 2rem 2rem 1.25rem 2rem;
-            border-bottom: 2px solid #FFE770;
-        }
-
-        h1 {
-            font-size: 1.85rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            background: linear-gradient(135deg, #1e1e2a 0%, #2c2c3a 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-
-        .title-accent {
-            display: inline-block;
-            background: #FFF7D6;
-            padding: 0.15rem 0.6rem;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #b17f00;
-            margin-left: 0.75rem;
-            vertical-align: middle;
-            letter-spacing: normal;
-        }
-
-        .subhead {
-            color: #5e5e6e;
-            font-size: 0.9rem;
-            margin-top: 0.4rem;
-            font-weight: 400;
-            border-left: 3px solid #FFDC4A;
-            padding-left: 0.8rem;
-        }
-
-        /* navigation grid — minimalist and airy */
-        .nav-grid {
-            padding: 2rem 2rem 2.5rem 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: flex-start;
-        }
-
-        /* card style links */
-        .nav-card {
-            flex: 1;
-            min-width: 200px;
-            background: #ffffff;
-            border-radius: 1.5rem;
-            text-decoration: none;
-            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-            border: 1px solid #efefe7;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.2rem 1.5rem;
-            color: #1e1e2a;
-        }
-
-        .nav-card:hover {
-            transform: translateY(-4px);
-            border-color: #FFE66D;
-            box-shadow: 0 18px 30px -12px rgba(255, 220, 80, 0.2), 0 2px 4px rgba(0, 0, 0, 0.02);
-            background: #FFFEF9;
-        }
-
-        .card-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: -0.2px;
-            color: #1e1e2a;
-        }
-
-        .card-desc {
-            font-size: 0.8rem;
-            color: #7a7a8a;
-            font-weight: 400;
-        }
-
-        .arrow-icon {
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: #FFDC4A;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-card:hover .arrow-icon {
-            transform: translateX(5px);
-            color: #f5c500;
-        }
-
-        .yellow-dot-pattern {
-            height: 4px;
-            background: repeating-linear-gradient(90deg, #FFE770, #FFE770 12px, #fff 12px, #fff 24px);
-            width: 100%;
-        }
-
-        .info-strip {
-            background: #FEFCF2;
-            border-top: 1px solid #fff1bf;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            font-size: 0.8rem;
-            color: #5a5a6a;
-        }
-
-        .badge {
-            background: #ffffff;
-            border-radius: 100px;
-            padding: 0.25rem 0.9rem;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #c28f00;
-            border: 1px solid #ffe1a0;
-            box-shadow: inset 0 0 0 0px #fff;
-        }
-
-        .live-date {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            height: 8px;
-            width: 8px;
-            background-color: #FFDC4A;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 0 2px #fff3cf;
-        }
-
-        /* responsive touches */
-        @media (max-width: 620px) {
-            body {
-                padding: 1rem;
-                align-items: flex-start;
-            }
-
-            .hero {
-                padding: 1.5rem 1.5rem 1rem 1.5rem;
-            }
-
-            .nav-grid {
-                padding: 1.5rem;
-                gap: 1rem;
-            }
-
-            .nav-card {
-                min-width: 100%;
-                padding: 1rem 1.2rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .info-strip {
-                padding: 0.9rem 1.5rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        /* subtle focus states for accessibility */
-        .nav-card:focus-visible {
-            outline: 3px solid #FFDC4A;
-            outline-offset: 3px;
-            border-radius: 1.5rem;
-        }
-
-        html {
-            background-color: #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="./styles/index.css">
 </head>
 
 <body>
     <div class="dashboard">
         <div class="hero">
             <h1>
-                UNLOADING MONITORING SYSTEM
-                <span class="title-accent">live</span>
+                UNLOADING + ISM SYSTEM
             </h1>
             <div class="subhead">
-                Track, manage, and monitor unloading operations
+                Generate ISM, generate unloading monitoring form and track unloading details.
             </div>
         </div>
 
         <!-- yellow minimal accent separator -->
         <div class="yellow-dot-pattern"></div>
 
-        <!-- navigation cards (preserving original links: unloading_form.php, unloading_list.php, ism_list.php) -->
         <div class="nav-grid">
             <a href="unloading_form.php" class="nav-card">
                 <div class="card-content">
@@ -267,19 +42,16 @@
             <a href="ism_list.php" class="nav-card">
                 <div class="card-content">
                     <span class="card-title">ISM List</span>
-                    <span class="card-desc">Inspection & safety records</span>
+                    <span class="card-desc">Inventory Stock Movement System</span>
                 </div>
                 <div class="arrow-icon">→</div>
             </a>
         </div>
 
-        <!-- minimalist footer strip with dynamic date and yellow badge -->
         <div class="info-strip">
             <div class="live-date">
                 <span class="dot"></span>
                 <span id="currentDate"></span>
-                <span style="font-weight: 400;">•</span>
-                <span>Monitoring active</span>
             </div>
             <div class="badge">
                 Stellar Seeds Corp.
@@ -287,10 +59,8 @@
         </div>
     </div>
 
-    <!-- tiny script for dynamic live date (keeps style consistent) -->
     <script>
         (function() {
-            // format current date: e.g., "Monday, 20 May 2026" — minimalist style
             const dateElem = document.getElementById('currentDate');
             if (dateElem) {
                 const now = new Date();
