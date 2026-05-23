@@ -269,31 +269,40 @@ $isJB = $header['isJB'] ?? 0;
             </div>
             <div class="field-row">
                 <div class="field-label">CLIENT:</div>
-                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['client'] ?? ''), 0, 20)); ?></div>
+                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['client'] ?? '')); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">VARIETY:</div>
-                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['variety_hybrid'] ?? ''), 0, 15)); ?></div>
+                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['variety_hybrid'] ?? '')); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">MATERIAL GROUP:</div>
-                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['material_group'] ?? ''), 0, 12)); ?></div>
+                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['material_group'] ?? '')); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">LOT NO:</div>
-                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['lot_number'] ?? ''), 0, 12)); ?></div>
+                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['lot_number'] ?? '')); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">BATCH NO:</div>
-                <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['batch_number'] ?? ''), 0, 12)); ?></div>
+                <div class="field-value"><?php echo strtoupper(htmlspecialchars($header['batch_number'] ?? '')); ?></div>
             </div>
             <div class="field-row">
                 <div class="field-label">TIME START:</div>
-                <div class="field-value"><?php echo htmlspecialchars($header['time_start'] ?? ''); ?></div>
+                <div class="field-value">
+                    <?php echo !empty($header['time_start'])
+                        ? date("g:i A", strtotime($header['time_start']))
+                        : ''; ?>
+                </div>
             </div>
+
             <div class="field-row">
                 <div class="field-label">TIME FINISH:</div>
-                <div class="field-value"><?php echo htmlspecialchars($header['time_finished'] ?? ''); ?></div>
+                <div class="field-value">
+                    <?php echo !empty($header['time_finished'])
+                        ? date("g:i A", strtotime($header['time_finished']))
+                        : ''; ?>
+                </div>
             </div>
         </div>
 
@@ -324,7 +333,7 @@ $isJB = $header['isJB'] ?? 0;
                 ?>
                     <tr>
                         <td><?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?></td>
-                        <td style="font-weight: 500;"><?php echo htmlspecialchars(substr($item['jb_pallet'] ?? '', 0, 6)); ?></td>
+                        <td style="font-weight: 500;"><?php echo htmlspecialchars($item['jb_pallet'] ?? ''); ?></td>
                         <td><?php echo number_format($item['bags_sacks_no']); ?></td>
                         <td><?php echo number_format($item['weight'], 0); ?></td>
                         <td><?php echo number_format($item['total_weight'], 0); ?></td>
@@ -352,7 +361,7 @@ $isJB = $header['isJB'] ?? 0;
 
         <div class="remarks-section">
             <div class="remarks-label">REMARKS:</div>
-            <div class="remarks-line"><?php echo htmlspecialchars(substr($header['remarks'] ?? '', 0, 35)); ?></div>
+            <div class="remarks-line"><?php echo htmlspecialchars($header['remarks'] ?? ''); ?></div>
             <div class="remarks-line"></div>
         </div>
 
@@ -360,12 +369,12 @@ $isJB = $header['isJB'] ?? 0;
         <div class="signatures">
             <div class="signature-item">
                 <div class="signature-line"></div>
-                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['prepared_by'] ?? ''), 0, 12)); ?></div>
+                <div class="signature-name"><?php echo strtoupper(htmlspecialchars($header['prepared_by'] ?? '')); ?></div>
                 <div class="signature-title">PREPARED BY</div>
             </div>
             <div class="signature-item">
                 <div class="signature-line"></div>
-                <div class="signature-name"><?php echo strtoupper(substr(htmlspecialchars($header['checked_by'] ?? ''), 0, 12)); ?></div>
+                <div class="signature-name"><?php echo strtoupper(htmlspecialchars($header['checked_by'] ?? '')); ?></div>
                 <div class="signature-title">CHECKED BY</div>
             </div>
         </div>

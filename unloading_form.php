@@ -503,19 +503,19 @@
                     </div>
                     <div class="input-group">
                         <label>Variety / Hybrid</label>
-                        <input name="variety_hybrid" id="variety_hybrid" placeholder="e.g., HYBRID 101">
+                        <input name="variety_hybrid" id="variety_hybrid" placeholder="e.g., HYBRID 101" required>
                     </div>
                     <div class="input-group">
                         <label>Material Group</label>
-                        <input name="material_group" id="material_group" placeholder="Material group code">
+                        <input name="material_group" id="material_group" placeholder="Material group code" required>
                     </div>
                     <div class="input-group">
                         <label>Lot Number</label>
-                        <input name="lot_number" id="lot_number" placeholder="Lot #">
+                        <input name="lot_number" id="lot_number" placeholder="Lot #" required>
                     </div>
                     <div class="input-group">
                         <label>Batch Number</label>
-                        <input name="batch_number" id="batch_number" placeholder="Batch #">
+                        <input name="batch_number" id="batch_number" placeholder="Batch #" required>
                     </div>
                     <div class="input-group">
                         <label>Jumbo or Pallet?</label>
@@ -531,15 +531,15 @@
                 <div class="fields-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px,1fr));">
                     <div class="input-group">
                         <label>⏱️ Time Start</label>
-                        <input type="time" name="time_start" id="time_start">
+                        <input type="time" name="time_start" id="time_start" required>
                     </div>
                     <div class="input-group">
                         <label>⏱️ Time Finished</label>
-                        <input type="time" name="time_finished" id="time_finished">
+                        <input type="time" name="time_finished" id="time_finished" required>
                     </div>
                     <div class="input-group">
                         <label>Prepared By</label>
-                        <input name="prepared_by" id="prepared_by" placeholder="Name">
+                        <input name="prepared_by" id="prepared_by" placeholder="Name" required>
                     </div>
                     <div class="input-group">
                         <label>Checked By</label>
@@ -627,10 +627,10 @@
             const tr = document.createElement('tr');
             tr.setAttribute('data-row-idx', index);
             tr.innerHTML = `
-            <td><input name="items[${index}][jb_pallet]" placeholder="Pallet / JB No." autocomplete="off" value="${escapeHtml(data.jb_pallet || '')}"></td>
-            <td><input name="items[${index}][bags_sacks_no]" type="number" step="1" placeholder="0" value="${data.bags_sacks_no || ''}"></td>
-            <td><input name="items[${index}][weight]" type="number" step="0.01" placeholder="0.00" value="${data.weight || ''}"></td>
-            <td><input name="items[${index}][total_weight]" type="number" step="0.01" placeholder="0.00" value="${data.total_weight || ''}"></td>
+            <td><input name="items[${index}][jb_pallet]" placeholder="Pallet / JB No." autocomplete="off" value="${escapeHtml(data.jb_pallet || '')}" required></td>
+            <td><input name="items[${index}][bags_sacks_no]" type="number" step="1" placeholder="0" value="${data.bags_sacks_no || ''}" required></td>
+            <td><input name="items[${index}][weight]" type="number" step="0.01" placeholder="0.00" value="${data.weight || ''}" ></td>
+            <td><input name="items[${index}][total_weight]" type="number" step="0.01" placeholder="0.00" value="${data.total_weight || ''}" required></td>
             <td style="text-align:center"><button type="button" class="remove-btn" onclick="removeRow(this)">✖ Remove</button></td>
         `;
             return tr;
