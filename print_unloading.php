@@ -53,136 +53,116 @@ $isJB = $header['isJB'] ?? 0;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
-        /* A6 size: 4" x 5.83" */
+        @page {
+            size: 105mm 250mm;
+            /* 1/2 lengthwise paper */
+            margin: 2mm;
+        }
+
         body {
-            background: #fff;
-            padding: 0;
-            margin: 0;
-            width: 4in;
-            height: 5.83in;
-            display: flex;
-            justify-content: center;
+            width: 105mm;
             margin: 0 auto;
+            background: #fff;
+            font-size: 9px;
         }
 
         .form-container {
             width: 100%;
-            height: 100%;
-            background: white;
-            padding: 0.08in;
-            overflow: hidden;
+            min-height: 250mm;
+            padding: 2mm;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 3px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-bottom: 1em;
         }
 
         .header img {
-            height: 16px;
+            height: 12mm;
             width: auto;
         }
 
         .company-info {
-            text-align: center;
-            font-size: 5px;
-            line-height: 1.1;
-            font-weight: 500;
+            font-size: 8px;
+            line-height: 1.2;
         }
 
         h2 {
-            text-align: center;
-            font-size: 8px;
-            font-weight: 700;
-            margin: 3px 0;
+            font-size: 15px;
+            margin: 1px 0;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            text-align: center;
         }
 
         .unloading-no {
             text-align: right;
-            margin-bottom: 4px;
-            font-weight: 600;
-            font-size: 6.5px;
-        }
-
-        .unloading-no span {
-            color: #c00;
-            font-size: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 2mm;
+            flex-shrink: 0;
+            color: red;
         }
 
         .form-fields {
-            margin-bottom: 4px;
+            margin-bottom: 1mm;
+            flex-shrink: 0;
         }
 
         .field-row {
             display: flex;
-            align-items: baseline;
-            margin-bottom: 3px;
-            font-size: 6px;
+            font-size: 10px;
+            margin-bottom: 1mm;
         }
 
         .field-label {
-            width: 15%;
-            font-weight: 600;
-            font-size: 5.5px;
+            width: 28%;
+            font-weight: bold;
         }
 
         .field-value {
             flex: 1;
-            border-bottom: 0.3px solid #000;
-            padding-left: 4px;
-            font-size: 1em;
+            border-bottom: 0.2px solid #000;
+            padding-left: 2px;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-            font-weight: bold;
-            /* margin-left: 8rem; */
         }
 
-        /* Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 3px 0;
-            font-size: 5px;
+            font-size: 8px;
+            margin: 2mm 0;
+            /* padding: 1mm; */
+            flex: 1;
         }
 
-        table,
         th,
         td {
-            border: 0.3px solid #000;
+            border: 0.2px solid #000;
+            padding: 1mm;
+            text-align: center;
+            font-size: 8px;
         }
 
         th {
-            background-color: #e6e6e6;
-            font-weight: 700;
-            padding: 2px 1px;
-            text-align: center;
-            font-size: 5px;
+            background: #e6e6e6;
+            font-size: 8px;
             text-transform: uppercase;
         }
 
-        td {
-            padding: 2px 1px;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 5px;
-        }
 
         th:nth-child(1) {
             width: 10%;
         }
 
         th:nth-child(2) {
-            width: 28%;
+            width: 30%;
         }
 
         th:nth-child(3) {
@@ -194,153 +174,65 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         th:nth-child(5) {
-            width: 26%;
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .checkbox-group div {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            white-space: nowrap;
-            font-size: 4px;
-        }
-
-        .checkbox-group input {
-            margin: 0;
-            width: 5px;
-            height: 5px;
-        }
-
-        .totals-row {
-            background-color: #e6e6e6;
-            font-weight: 700;
-        }
-
-        .totals-row td {
-            padding: 2px 1px;
-            font-size: 5.5px;
-        }
-
-        .remarks-section {
-            margin: 3px 0;
-            padding: 1px 0;
+            width: 24%;
         }
 
         .remarks-label {
-            font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 5.5px;
+            font-size: 7px;
+            font-weight: bold;
+            margin-top: 1mm;
+            flex-shrink: 0;
         }
 
         .remarks-line {
-            border-bottom: 0.3px solid #000;
-            padding: 2px 0;
-            min-height: 12px;
-            font-size: 5px;
+            border-bottom: 0.2px solid #000;
+            min-height: 5mm;
         }
 
         .signatures {
             display: flex;
             justify-content: space-between;
-            margin-top: 4px;
+            margin-top: 3mm;
+            flex-shrink: 0;
         }
 
         .signature-item {
             width: 45%;
-        }
-
-        .signature-item:first-child {
-            text-align: left;
-        }
-
-        .signature-item:last-child {
-            text-align: right;
+            text-align: center;
         }
 
         .signature-line {
-            border-top: 0.3px solid #000;
-            margin: 5px 0 2px 0;
-            width: 100%;
+            border-top: 0.2px solid #000;
+            margin-top: 5mm;
         }
 
         .signature-name {
-            font-weight: 600;
-            font-size: 5px;
-            text-transform: uppercase;
-            margin-bottom: 1px;
+            font-size: 7px;
+            font-weight: bold;
         }
 
         .signature-title {
-            font-size: 4px;
-            color: #555;
-        }
-
-        /* Print button */
-        .print-btn-container {
-            text-align: center;
-            margin-top: 4px;
-        }
-
-        .print-btn {
-            background: #1a4a1a;
-            color: white;
-            border: none;
-            padding: 2px 8px;
-            border-radius: 2px;
             font-size: 6px;
-            font-weight: 600;
-            cursor: pointer;
         }
 
-        .print-btn:hover {
-            background: #0f3a0f;
+        .checkbox-group {
+            line-height: 1.2;
         }
 
         @media print {
             body {
-                width: 4in;
-                height: 5.83in;
-                padding: 0;
-                margin: 0;
+                width: 105mm;
+                margin: 4mm;
+                /* border: 1px solid #000; */
             }
 
             .form-container {
-                padding: 0.08in;
+                min-height: 250mm;
+                padding: 2mm;
             }
 
-            .print-btn-container {
-                display: none;
-            }
-
-            th {
-                background-color: #e6e6e6 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .totals-row {
-                background-color: #e6e6e6 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            table,
-            th,
-            td {
-                border: 0.3px solid black !important;
-            }
-
-            @page {
-                size: 4in 5.83in;
-                margin: 0;
+            table {
+                font-size: 6px;
             }
         }
     </style>
@@ -348,7 +240,6 @@ $isJB = $header['isJB'] ?? 0;
 
 <body>
     <div class="form-container">
-        <!-- Header -->
         <div class="header">
             <img src="./assets/stellar_logo.png" alt="Stellar Seeds">
             <div class="company-info">
@@ -359,9 +250,8 @@ $isJB = $header['isJB'] ?? 0;
 
         <h2>UNLOADING MONITORING FORM</h2>
 
-        <!-- Unloading No -->
         <div class="unloading-no">
-            NO: <span><?php echo htmlspecialchars($unloading_id); ?></span>
+            NO: <span><?php echo sprintf('%06d', $unloading_id); ?></span>
         </div>
 
         <div class="form-fields">
@@ -403,7 +293,7 @@ $isJB = $header['isJB'] ?? 0;
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>No</th>
                     <th>
                         <div class="checkbox-group">
                             <?php if ($isJB == 1): ?>
@@ -423,7 +313,6 @@ $isJB = $header['isJB'] ?? 0;
             <tbody>
                 <?php
                 foreach ($items as $index => $item):
-
                 ?>
                     <tr>
                         <td><?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?></td>
@@ -448,7 +337,7 @@ $isJB = $header['isJB'] ?? 0;
                     <td colspan="2" style="text-align: right; font-weight: 700;">TOTAL:</td>
                     <td style="font-weight: 700;"><?php echo number_format($totalBags); ?></td>
                     <td>&nbsp;</td>
-                    <td style="font-weight: 700;"><?php echo number_format($totalWeight, 0); ?></td>
+                    <td style="font-weight: 700;"><?php echo number_format($totalWeight, 0); ?> KG</td>
                 </tr>
             </tbody>
         </table>
@@ -456,6 +345,7 @@ $isJB = $header['isJB'] ?? 0;
         <div class="remarks-section">
             <div class="remarks-label">REMARKS:</div>
             <div class="remarks-line"><?php echo htmlspecialchars(substr($header['remarks'] ?? '', 0, 35)); ?></div>
+            <div class="remarks-line"></div>
         </div>
 
         <!-- Signatures -->
@@ -472,9 +362,7 @@ $isJB = $header['isJB'] ?? 0;
             </div>
         </div>
 
-        <div class="print-btn-container">
-            <button class="print-btn" onclick="window.print()">🖨️ PRINT</button>
-        </div>
+
     </div>
 </body>
 

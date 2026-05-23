@@ -608,8 +608,8 @@
                 <label>Phase Type</label>
                 <select id="modal_phase_type">
                     <option value="">Select Phase</option>
-                    <option value="1">Phase 300</option>
-                    <option value="2">Phase 500</option>
+                    <option value="1">COM 300</option>
+                    <option value="2">COM 500</option>
                 </select>
                 <span style="font-size: 0.7rem; color: #bdbdc9; display: block; margin-top: 0.25rem;">300 = Phase 1 | 500 = Phase 2</span>
             </div>
