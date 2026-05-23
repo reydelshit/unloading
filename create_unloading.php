@@ -3,8 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-
-$connLocal = new mysqli("localhost", "root", "", "ism");
+include 'db.php';
 
 if ($connLocal->connect_error) {
     die("Connection failed: " . $connLocal->connect_error);

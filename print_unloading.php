@@ -156,6 +156,9 @@ $isJB = $header['isJB'] ?? 0;
             text-transform: uppercase;
         }
 
+        .totals-row td {
+            font-size: 12px;
+        }
 
         th:nth-child(1) {
             width: 10%;
@@ -178,7 +181,7 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         .remarks-label {
-            font-size: 7px;
+            font-size: 10px;
             font-weight: bold;
             margin-top: 1mm;
             flex-shrink: 0;
@@ -187,6 +190,7 @@ $isJB = $header['isJB'] ?? 0;
         .remarks-line {
             border-bottom: 0.2px solid #000;
             min-height: 5mm;
+            font-size: 12px;
         }
 
         .signatures {
@@ -207,12 +211,12 @@ $isJB = $header['isJB'] ?? 0;
         }
 
         .signature-name {
-            font-size: 7px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .signature-title {
-            font-size: 6px;
+            font-size: 10px;
         }
 
         .checkbox-group {
@@ -234,6 +238,10 @@ $isJB = $header['isJB'] ?? 0;
             table {
                 font-size: 6px;
             }
+
+
+
+
         }
     </style>
 </head>
@@ -268,7 +276,7 @@ $isJB = $header['isJB'] ?? 0;
                 <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['variety_hybrid'] ?? ''), 0, 15)); ?></div>
             </div>
             <div class="field-row">
-                <div class="field-label">MATERIAL GRP:</div>
+                <div class="field-label">MATERIAL GROUP:</div>
                 <div class="field-value"><?php echo strtoupper(substr(htmlspecialchars($header['material_group'] ?? ''), 0, 12)); ?></div>
             </div>
             <div class="field-row">
