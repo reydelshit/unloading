@@ -158,6 +158,8 @@
                 <button class="btn-modal-no" onclick="closeImportModal()">Cancel</button>
                 <button class="btn-modal-yes" id="confirmImportBtn">Fetch Data</button>
             </div>
+
+
         </div>
     </div>
 

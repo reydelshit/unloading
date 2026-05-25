@@ -1,4 +1,5 @@
 <?php
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
@@ -13,7 +14,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$response = ['success' => false, 'message' => '', 'data' => null];
+$response = [
+    'success' => false,
+    'message' => '',
+    'data' => null
+];
 
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -23,8 +28,13 @@ if (!$input) {
     exit();
 }
 
-$lotNumber = isset($input['lot_number']) ? trim($input['lot_number']) : '';
-$phaseType = isset($input['phase_type']) ? trim($input['phase_type']) : '';
+$lotNumber = isset($input['lot_number'])
+    ? trim($input['lot_number'])
+    : '';
+
+$phaseType = isset($input['phase_type'])
+    ? (int)$input['phase_type']
+    : 0;
 
 if (empty($lotNumber)) {
     $response['message'] = 'Lot number is required';
@@ -41,111 +51,142 @@ if (empty($phaseType)) {
 $onlineHost = 'srv2188.hstgr.io';
 $onlineUser = 'u321237277_stellarsys';
 $onlinePass = 'Stellar2025*';
-$onlineDb = 'u321237277_stellarsys';
+$onlineDb   = 'u321237277_stellarsys';
 
-$onlineConn = new mysqli($onlineHost, $onlineUser, $onlinePass, $onlineDb);
+$onlineConn = new mysqli(
+    $onlineHost,
+    $onlineUser,
+    $onlinePass,
+    $onlineDb
+);
 
 if ($onlineConn->connect_error) {
-    $response['message'] = 'Online database connection failed: ' . $onlineConn->connect_error;
+    $response['message'] =
+        'Online database connection failed: ' .
+        $onlineConn->connect_error;
+
     echo json_encode($response);
     exit();
 }
 
+$search = "%{$lotNumber}%";
 
 $stmt = $onlineConn->prepare("
-    SELECT 
-        *
-    FROM tbl_tags 
-    WHERE lotno = ? AND phasetype = ?
+    SELECT *
+    FROM tbl_tags
+    WHERE lotno LIKE ?
+    AND phasetype = ?
     LIMIT 1
 ");
 
 if (!$stmt) {
-    $response['message'] = 'Database query preparation failed: ' . $onlineConn->error;
+    $response['message'] =
+        'Database query preparation failed: ' .
+        $onlineConn->error;
+
     echo json_encode($response);
     $onlineConn->close();
     exit();
 }
 
-$stmt->bind_param("ss", $lotNumber, $phaseType);
+$stmt->bind_param("si", $search, $phaseType);
+
 $stmt->execute();
+
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    $response['message'] = "No data found for Lot Number: $lotNumber and Phase Type: $phaseType";
+
+    $response['message'] =
+        "No data found for Lot Number: {$lotNumber} and Phase Type: {$phaseType}";
+
     echo json_encode($response);
+
     $stmt->close();
     $onlineConn->close();
+
     exit();
 }
 
 $row = $result->fetch_assoc();
 
 $itemsStmt = $onlineConn->prepare("
-    SELECT 
-        jbno as jb_pallet,
-        quantity as weight
-    FROM tbl_tags 
-    WHERE lotno = ? AND phasetype = ?
+    SELECT
+        jbno AS jb_pallet,
+        quantity AS weight
+    FROM tbl_tags
+    WHERE lotno LIKE ?
+    AND phasetype = ?
 ");
 
+$items = [];
+
 if ($itemsStmt) {
-    $itemsStmt->bind_param("ss", $lotNumber, $phaseType);
+
+    $itemsStmt->bind_param("si", $search, $phaseType);
+
     $itemsStmt->execute();
+
     $itemsResult = $itemsStmt->get_result();
 
-    $items = [];
-    $itemIndex = 0;
     while ($itemRow = $itemsResult->fetch_assoc()) {
+
         $items[] = [
-            'jb_pallet' => $itemRow['jb_pallet'],
+            'jb_pallet'     => $itemRow['jb_pallet'],
             'bags_sacks_no' => 1,
-            'weight' => $itemRow['weight'],
-            'total_weight' => $itemRow['weight']
+            'weight'        => $itemRow['weight'],
+            'total_weight'  => $itemRow['weight']
         ];
-        $itemIndex++;
     }
+
     $itemsStmt->close();
-} else {
-    $items = [];
 }
 
 $containerType = '0';
+
 if (isset($row['type'])) {
+
     $typeLower = strtolower($row['type']);
-    if ($typeLower == 'jb' || $typeLower == 'jumbo') {
+
+    if ($typeLower === 'jb' || $typeLower === 'jumbo') {
+
         $containerType = '1';
-    } elseif ($typeLower == 'pallet') {
+    } elseif ($typeLower === 'pallet') {
+
         $containerType = '0';
-    } elseif ($typeLower == 'pouch') {
+    } elseif ($typeLower === 'pouch') {
+
         $containerType = '2';
-    } elseif ($typeLower == 'sacks') {
+    } elseif ($typeLower === 'sacks') {
+
         $containerType = '3';
-    } elseif ($typeLower == 'bags') {
+    } elseif ($typeLower === 'bags') {
+
         $containerType = '4';
     }
 }
 
-
 $response['success'] = true;
+
 $response['message'] = 'Data fetched successfully';
+
 $response['data'] = [
-    'lot_number' => $row['lotno'],
-    'phase_type' => $row['phasetype'],
-    'client' => $row['client'],
-    'variety_hybrid' => $row['hybrid'],
-    'material_group' => $row['descp'],
-    'batch_number' => $row['recid'],
-    'isJB' => $containerType,
-    'time_start' => '',
-    'time_finished' => '',
-    'prepared_by' => $row['prepby'],
-    'checked_by' => $row['checkby'],
-    'remarks' => $row['remarks'],
-    'bin_no' => $row['bin'],
-    'quality' => $row['quality'],
-    'quantity' => $row['quantity'],
-    'items' => $items
+    'lot_number'      => $row['lotno'],
+    'phase_type'      => $row['phasetype'],
+    'client'          => $row['client'],
+    'variety_hybrid'  => $row['hybrid'],
+    'material_group'  => $row['descp'],
+    'batch_number'    => $row['recid'],
+    'isJB'            => $containerType,
+    'time_start'      => '',
+    'time_finished'   => '',
+    'prepared_by'     => $row['prepby'],
+    'checked_by'      => $row['checkby'],
+    'remarks'         => $row['remarks'],
+    'bin_no'          => $row['bin'],
+    'quality'         => $row['quality'],
+    'quantity'        => $row['quantity'],
+    'items'           => $items
 ];
 
 $stmt->close();
